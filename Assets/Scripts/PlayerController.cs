@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
     public float speed;
     public Text scoreBoard;
+    public Text noOfLives;
 
     private void Start()
     {
@@ -22,6 +23,22 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-        rigidbody.AddForce(movement * speed); 
+        rigidbody.AddForce(movement * speed);
+    }
+
+    public void Update()
+    {
+        if (rigidbody.position.y < -8)
+        {
+            Debug.Log("Player died");
+            rigidbody.position = new Vector3(0, 0.5f, 0);
+            int livesLeft = int.Parse(noOfLives.text);
+            livesLeft--;
+            noOfLives.text = "" + livesLeft;
+            if (livesLeft == -1)
+            {
+                Debug.Log("Plyer died for good");
+            }
+        }
     }
 }
