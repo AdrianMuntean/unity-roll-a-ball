@@ -1,0 +1,9 @@
+*.exe
+*.sln
+Temp/
+Library/
+ProjectSettings/
+build_Data/
+IS Project
+*.dll
+*.csproj
