@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -23,5 +24,20 @@ public class MainMenu : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void UpdateScoreLevel1(Text name)
+    {
+        Debug.Log("");
+    }
+
+    public void ReplayLevel1()
+    {
+        LoadScene("Game level 1");
     }
 }

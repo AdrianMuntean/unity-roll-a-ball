@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimeUpdate : MonoBehaviour {
 
     public Text timeBox;
+    public Text savedTime;
     public Transform canvas;
     public GameObject gameObject;
     public int initialTimeInMinutes;
@@ -28,6 +29,13 @@ public class TimeUpdate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (savedTime.text.StartsWith("DEAD"))
+        {
+            elapsedTime = Time.time;
+            restoreTime();
+            return;
+        }
+
         float currentTime = Time.time;
 		if (currentTime - elapsedTime >= 1)
         {
@@ -35,6 +43,23 @@ public class TimeUpdate : MonoBehaviour {
             updateTime();
         }
 	}
+
+    private void restoreTime()
+    {
+        if (savedTime.text.Length == 4)
+        {
+            minutes = initialTimeInMinutes;
+            seconds = 1;
+            savedTime.text = "";
+            timeBox.text = "" + initialTimeInMinutes + ":00";
+            return;
+        }
+        string savedTimeValue = savedTime.text.Substring(4);
+        int separatorIndex = savedTimeValue.IndexOf(':');
+        minutes = int.Parse(savedTimeValue.Substring(0, separatorIndex));
+        seconds = int.Parse(savedTimeValue.Substring(separatorIndex + 1));
+        savedTime.text = savedTimeValue;
+    }
 
     private void updateTime()
     {
