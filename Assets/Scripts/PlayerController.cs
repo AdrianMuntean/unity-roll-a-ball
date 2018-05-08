@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour {
     public Text finalScoreText;
     public Transform endLevelMenu;
 
+    public Material wood;
+    public Material stone;
+
     private float reviveX;
     private float reviveY;
     private float reviveZ;
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour {
         reviveY = 0.5f;
         reviveZ = 0;
         rigidbody = GetComponent<Rigidbody>();
+        GetComponent<Renderer>().material = wood;
     }
 
     public void FixedUpdate()
@@ -99,6 +103,18 @@ public class PlayerController : MonoBehaviour {
                 updateFinalScore();
                 levelTime.text = "-";
                 endLevelMenu.gameObject.SetActive(true);
+                break;
+            case "Life":
+                int livesLeft = int.Parse(noOfLives.text);
+                livesLeft++;
+                noOfLives.text = "" + livesLeft;
+                other.gameObject.SetActive(false);
+                UpdateMessageBox("You have gained one extra life");
+                break;
+            case "Stone":
+                speed = 3;
+                other.gameObject.SetActive(false);
+                GetComponent<Renderer>().material = stone;
                 break;
         }
 
