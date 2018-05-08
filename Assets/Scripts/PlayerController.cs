@@ -125,19 +125,19 @@ public class PlayerController : MonoBehaviour {
                 UpdateMessageBox("You have gained one extra life");
                 break;
             case "Stone":
-                savedSpeed = speed;
-                savedScale = transform.localScale;
-                savedMaterial = GetComponent<Renderer>().material;
-                rigidbody.mass += 0.5f;
+                //savedSpeed = speed;
+                //savedScale = transform.localScale;
+                //savedMaterial = GetComponent<Renderer>().material;
+                rigidbody.mass = 1.2f;
                 speed = 3;
                 //other.gameObject.SetActive(false);
                 //transform.localScale += new Vector3(0.3f, 0.3f, 0.3f);
                 GetComponent<Renderer>().material = stone;
                 break;
             case "Paper":
-                savedSpeed = speed;
-                savedScale = transform.localScale;
-                savedMaterial = GetComponent<Renderer>().material;
+                //savedSpeed = speed;
+                //savedScale = transform.localScale;
+                //savedMaterial = GetComponent<Renderer>().material;
 
                 speed = 15;
                 //other.gameObject.SetActive(false);
@@ -146,9 +146,9 @@ public class PlayerController : MonoBehaviour {
                 break;
 
             case "Wood":
-                savedSpeed = speed;
-                savedScale = transform.localScale;
-                savedMaterial = GetComponent<Renderer>().material;
+                //savedSpeed = speed;
+                //savedScale = transform.localScale;
+                //savedMaterial = GetComponent<Renderer>().material;
 
                 speed = 10;
                 //other.gameObject.SetActive(false);
