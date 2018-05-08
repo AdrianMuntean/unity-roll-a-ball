@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 
     public Material wood;
     public Material stone;
+    public Material paper;
 
     private float reviveX;
     private float reviveY;
@@ -26,6 +27,10 @@ public class PlayerController : MonoBehaviour {
     private float startTimeOfDisplay;
     private int score;
     bool doneLevel;
+
+    private Material savedMaterial;
+    private Vector3 savedScale;
+    private float savedSpeed = 10;
 
     private void Start()
     {
@@ -37,6 +42,8 @@ public class PlayerController : MonoBehaviour {
         reviveZ = 0;
         rigidbody = GetComponent<Rigidbody>();
         GetComponent<Renderer>().material = wood;
+        savedMaterial = wood;
+        savedScale = new Vector3(1f, 1f, 1f);
     }
 
     public void FixedUpdate()
@@ -58,6 +65,7 @@ public class PlayerController : MonoBehaviour {
        // PlayerPrefs.DeleteAll();
         if (rigidbody.position.y < -4)
         {
+            Debug.Log(savedLevelTime.text);
             Debug.Log("Player died");
             rigidbody.position = new Vector3(reviveX, reviveY, reviveZ);
             rigidbody.velocity = Vector3.zero;
@@ -65,7 +73,11 @@ public class PlayerController : MonoBehaviour {
             int livesLeft = int.Parse(noOfLives.text);
             livesLeft--;
             noOfLives.text = "" + livesLeft;
-            savedLevelTime.text = "DEAD" + savedLevelTime.text;            
+            savedLevelTime.text = "DEAD" + savedLevelTime.text;
+            Debug.Log("Saved time: " + savedLevelTime.text);
+            speed = savedSpeed;
+            transform.localScale = savedScale;
+            GetComponent<Renderer>().material = savedMaterial;
         }
 
         checkGameMessageExpiration();
@@ -92,10 +104,11 @@ public class PlayerController : MonoBehaviour {
                 saveTime();
                 other.gameObject.SetActive(false);
                 UpdateMessageBox("YOUR PROGRESS WAS SAVED");
-            break;
-            case "DissapearingWall":
-                UpdateMessageBox("You must wait for the tutorial to finnish");
-            break;
+
+                savedSpeed = speed;
+                savedScale = transform.localScale;
+                savedMaterial = GetComponent<Renderer>().material;
+                break;
             case "End game":
                 rigidbody.velocity = Vector3.zero;
                 rigidbody.angularVelocity = Vector3.zero;
@@ -112,9 +125,35 @@ public class PlayerController : MonoBehaviour {
                 UpdateMessageBox("You have gained one extra life");
                 break;
             case "Stone":
+                savedSpeed = speed;
+                savedScale = transform.localScale;
+                savedMaterial = GetComponent<Renderer>().material;
+                rigidbody.mass += 0.5f;
                 speed = 3;
-                other.gameObject.SetActive(false);
+                //other.gameObject.SetActive(false);
+                //transform.localScale += new Vector3(0.3f, 0.3f, 0.3f);
                 GetComponent<Renderer>().material = stone;
+                break;
+            case "Paper":
+                savedSpeed = speed;
+                savedScale = transform.localScale;
+                savedMaterial = GetComponent<Renderer>().material;
+
+                speed = 15;
+                //other.gameObject.SetActive(false);
+                transform.localScale = new Vector3(1f, 1f, 1f);
+                GetComponent<Renderer>().material = paper;
+                break;
+
+            case "Wood":
+                savedSpeed = speed;
+                savedScale = transform.localScale;
+                savedMaterial = GetComponent<Renderer>().material;
+
+                speed = 10;
+                //other.gameObject.SetActive(false);
+                transform.localScale = new Vector3(1f, 1f, 1f);
+                GetComponent<Renderer>().material = wood;
                 break;
         }
 

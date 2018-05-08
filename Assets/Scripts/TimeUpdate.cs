@@ -48,6 +48,7 @@ public class TimeUpdate : MonoBehaviour {
     {
         if (savedTime.text.Length == 4)
         {
+            Debug.Log("Time to restore time");
             minutes = initialTimeInMinutes;
             seconds = 1;
             savedTime.text = "";

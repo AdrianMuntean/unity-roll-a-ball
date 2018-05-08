@@ -11244,7 +11244,6 @@ GameObject:
   - component: {fileID: 1770160661}
   - component: {fileID: 1770160663}
   - component: {fileID: 1770160664}
-  - component: {fileID: 1770160665}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -11337,6 +11336,9 @@ MonoBehaviour:
   savedLevelTime: {fileID: 14058181}
   finalScoreText: {fileID: 766746145}
   endLevelMenu: {fileID: 1558408627}
+  wood: {fileID: 2100000, guid: a3b1457832d76654eae613a68fbc8aef, type: 2}
+  stone: {fileID: 2100000, guid: ddc5b98855508c74dbccb36ebf0d3c08, type: 2}
+  paper: {fileID: 2100000, guid: d6ea49e9095609b4abcb65323418594a, type: 2}
 --- !u!54 &1770160662
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11379,17 +11381,6 @@ MonoBehaviour:
   timeToBeDisplayed: 5
   text: {fileID: 735997391}
   textThatNeedToBeEmpty: {fileID: 1239571940}
---- !u!114 &1770160665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1770160656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 442d7a06360512a499d397b6500cdfd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1809148661
 Prefab:
   m_ObjectHideFlags: 0
