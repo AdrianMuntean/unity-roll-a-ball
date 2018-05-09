@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpdateScore : MonoBehaviour {
+public class UpdateScoreLevel2 : MonoBehaviour {
 
     public Text name1;
     public Text name2;
@@ -13,13 +13,13 @@ public class UpdateScore : MonoBehaviour {
     public Text score2;
     public Text score3;
 
-    private string highestScore_key = "HIGHESTSCORE_L1";
-    private string highestScore2_key = "HIGHESTSCORE2_L1";
-    private string highestScore3_key = "HIGHESTSCORE3_L1";
+    private string highestScore_key = "HIGHESTSCORE_L2";
+    private string highestScore2_key = "HIGHESTSCORE2_L2";
+    private string highestScore3_key = "HIGHESTSCORE3_L2";
 
-    private string highestScoreName_key = "HIGHESTSCORENAME_L1";
-    private string highestScore2Name_key = "HIGHESTSCORE2NAME_L1";
-    private string highestScore3Name_key = "HIGHESTSCORE3NAME_L1";
+    private string highestScoreName_key = "HIGHESTSCORENAME_L2";
+    private string highestScore2Name_key = "HIGHESTSCORE2NAME_L2";
+    private string highestScore3Name_key = "HIGHESTSCORE3NAME_L2";
 
     public void Update()
     {
@@ -40,7 +40,8 @@ public class UpdateScore : MonoBehaviour {
         {
             score2.text = highScore2 + "";
             name2.text = PlayerPrefs.GetString(highestScore2Name_key);
-        } else
+        }
+        else
         {
             score2.text = "";
             name2.text = "";
@@ -50,7 +51,8 @@ public class UpdateScore : MonoBehaviour {
         {
             score3.text = highScore3 + "";
             name3.text = PlayerPrefs.GetString(highestScore3Name_key);
-        } else
+        }
+        else
         {
             score3.text = "";
             name3.text = "";

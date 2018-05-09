@@ -40,4 +40,9 @@ public class MainMenu : MonoBehaviour
     {
         LoadScene("Game level 1");
     }
+
+    public void ResetHighScore()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

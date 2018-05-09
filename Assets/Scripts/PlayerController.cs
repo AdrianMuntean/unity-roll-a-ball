@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
     private Material savedMaterial;
     private Vector3 savedScale;
     private float savedSpeed = 10;
+    private float savedMass = 1;
 
     private void Start()
     {
@@ -44,6 +45,9 @@ public class PlayerController : MonoBehaviour {
         GetComponent<Renderer>().material = wood;
         savedMaterial = wood;
         savedScale = new Vector3(1f, 1f, 1f);
+
+        rigidbody.mass = 1;
+        speed = 10;
     }
 
     public void FixedUpdate()
@@ -75,6 +79,8 @@ public class PlayerController : MonoBehaviour {
             noOfLives.text = "" + livesLeft;
             savedLevelTime.text = "DEAD" + savedLevelTime.text;
             Debug.Log("Saved time: " + savedLevelTime.text);
+
+            rigidbody.mass = savedMass;
             speed = savedSpeed;
             transform.localScale = savedScale;
             GetComponent<Renderer>().material = savedMaterial;
@@ -100,6 +106,7 @@ public class PlayerController : MonoBehaviour {
                 updateScore(100);
            break;
             case "Save":
+                saveBallState();
                 saveCoordinates(other);
                 saveTime();
                 other.gameObject.SetActive(false);
@@ -108,6 +115,7 @@ public class PlayerController : MonoBehaviour {
                 savedSpeed = speed;
                 savedScale = transform.localScale;
                 savedMaterial = GetComponent<Renderer>().material;
+                savedMass = rigidbody.mass;
                 break;
             case "End game":
                 rigidbody.velocity = Vector3.zero;
@@ -125,41 +133,41 @@ public class PlayerController : MonoBehaviour {
                 UpdateMessageBox("You have gained one extra life");
                 break;
             case "Stone":
-                //savedSpeed = speed;
-                //savedScale = transform.localScale;
-                //savedMaterial = GetComponent<Renderer>().material;
-                rigidbody.mass = 1.2f;
+                rigidbody.mass = 3f;
                 speed = 3;
-                //other.gameObject.SetActive(false);
-                //transform.localScale += new Vector3(0.3f, 0.3f, 0.3f);
                 GetComponent<Renderer>().material = stone;
+                UpdateMessageBox("YOU ARE NOW A STONE BALL");
                 break;
             case "Paper":
-                //savedSpeed = speed;
-                //savedScale = transform.localScale;
-                //savedMaterial = GetComponent<Renderer>().material;
-
-                speed = 15;
-                //other.gameObject.SetActive(false);
-                transform.localScale = new Vector3(1f, 1f, 1f);
+                speed = 1.5f;
+                rigidbody.mass = 0.1f;               
                 GetComponent<Renderer>().material = paper;
+                UpdateMessageBox("YOU ARE NOW A PAPER BALL");
                 break;
 
-            case "Wood":
-                //savedSpeed = speed;
-                //savedScale = transform.localScale;
-                //savedMaterial = GetComponent<Renderer>().material;
-
+            case "Wood":             
                 speed = 10;
-                //other.gameObject.SetActive(false);
+                rigidbody.mass = 1f;
                 transform.localScale = new Vector3(1f, 1f, 1f);
                 GetComponent<Renderer>().material = wood;
+                UpdateMessageBox("YOU ARE NOW A WOOD BALL");
                 break;
+            case "DissapearingWall":
+                UpdateMessageBox("You must wait for the tutorial to finnish");
+                break;
+
         }
 
         checkGameMessageExpiration();
         //Destroy(other.gameObject);
         
+    }
+
+    private void saveBallState()
+    {
+        savedSpeed = speed;
+        savedMass = rigidbody.mass;
+        savedMaterial = GetComponent<Renderer>().material;
     }
 
     private void updateFinalScore()
