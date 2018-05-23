@@ -21,5 +21,10 @@ public class EnableLevel1 : MonoBehaviour {
             level2PlayButton.gameObject.SetActive(true);
             level2Text.gameObject.SetActive(true);
         }
+        else
+        {
+            level2PlayButton.gameObject.SetActive(false);
+            level2Text.gameObject.SetActive(false);
+        }
 	}
 }

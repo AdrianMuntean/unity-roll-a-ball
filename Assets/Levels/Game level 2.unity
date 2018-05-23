@@ -9542,7 +9542,7 @@ MonoBehaviour:
   savedTime: {fileID: 21604508}
   canvas: {fileID: 269609904}
   gameObject: {fileID: 1770160656}
-  initialTimeInMinutes: 3
+  initialTimeInMinutes: 4
 --- !u!114 &1074030897
 MonoBehaviour:
   m_ObjectHideFlags: 0
